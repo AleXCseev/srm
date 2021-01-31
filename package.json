@@ -1,0 +1,15 @@
+{
+	"name": "mean",
+	"version": "1.0.0",
+	"description": "MEAN stack app",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index",
+		"server": "nodemon index"
+	},
+	"author": "Alekseev Konstantin",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
