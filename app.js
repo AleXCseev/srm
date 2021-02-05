@@ -13,7 +13,12 @@ const keys = require("./config/keys");
 const app = express();
 
 mongoose
-	.connect(keys.mongoURI)
+	.connect(keys.mongoURI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useCreateIndex: true,
+		useFindAndModify: false
+ })
 	.then(() => {
 		console.log("MongoDB connected!");
 	})
@@ -25,6 +30,7 @@ app.use(passport.initialize());
 require("./middleware/passport")(passport);
 
 app.use(morgan("dev"));
+app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
