@@ -4,11 +4,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const morgan = require("morgan");
 const passport = require("passport");
+
 const authRoutes = require("./routes/auth");
 const analyticsRoutes = require("./routes/analytics");
 const categoryRoutes = require("./routes/category");
 const orderRoutes = require("./routes/order");
 const positionRoutes = require("./routes/position");
+
 const keys = require("./config/keys");
 const app = express();
 
@@ -17,8 +19,8 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true,
-		useFindAndModify: false
- })
+		useFindAndModify: false,
+	})
 	.then(() => {
 		console.log("MongoDB connected!");
 	})
@@ -30,7 +32,7 @@ app.use(passport.initialize());
 require("./middleware/passport")(passport);
 
 app.use(morgan("dev"));
-app.use("/uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
